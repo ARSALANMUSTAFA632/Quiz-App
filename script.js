@@ -1,5 +1,7 @@
-//References
-let timeLeft = document.querySelector(".time-left");
+
+
+// References
+let timeLeft = document.querySelector(".timer-left");
 let quizContainer = document.getElementById("container");
 let nextBtn = document.getElementById("next-button");
 let countOfQuestion = document.querySelector(".number-of-question");
@@ -9,13 +11,13 @@ let restart = document.getElementById("restart");
 let userScore = document.getElementById("user-score");
 let startScreen = document.querySelector(".start-screen");
 let startButton = document.getElementById("start-button");
-let questionCount;
+
+let questionCount = 0;
 let scoreCount = 0;
-let count = 11;
+let count = 10;
 let countdown;
 
-//Questions and Options array
-
+// Questions and Options array
 const quizArray = [
   {
     id: "0",
@@ -27,7 +29,6 @@ const quizArray = [
     id: "1",
     question: "Who is considered the father of AI?",
     options: ["Alan Turing", "John McCarthy", "Marvin Minsky", "Andrew Ng "],
-
     correct: "John McCarthy",
   },
   {
@@ -36,14 +37,12 @@ const quizArray = [
     options: ["Clustering", "Classification", "Reinforcement learning", "None of the above"],
     correct: "Classification",
   },
-
   {
     id: "3",
     question: "Which programming language is commonly used for AI development?",
     options: ["Python", "JavaScript", "HTML", "Swift"],
     correct: "Python",
   },
-
   {
     id: "4",
     question: "Which AI technology is commonly used in self-driving cars?",
@@ -52,42 +51,34 @@ const quizArray = [
   },
 ];
 
-//Restart Quiz
+// Restart Quiz
 restart.addEventListener("click", () => {
   initial();
   displayContainer.classList.remove("hide");
   scoreContainer.classList.add("hide");
 });
 
-//Next Button
-nextBtn.addEventListener(
-  "click",
-  (displayNext = () => {
-    //increment questionCount
+// Next Button
+nextBtn.addEventListener("click", (displayNext = () => {
     questionCount += 1;
-    //if last question
+    
     if (questionCount == quizArray.length) {
-      //hide question container and display score
       displayContainer.classList.add("hide");
       scoreContainer.classList.remove("hide");
-      //user score
-      userScore.innerHTML =
-        "Your score is " + scoreCount + " out of " + questionCount;
+      userScore.innerHTML = `Your score is ${scoreCount} out of ${questionCount}`;
     } else {
-      //display questionCount
-      countOfQuestion.innerHTML =
-        questionCount + 1 + " of " + quizArray.length + " Question";
-      //display quiz
+      countOfQuestion.innerHTML = `${questionCount + 1} of ${quizArray.length} Question`;
       quizDisplay(questionCount);
-      count = 11;
+      count = 10;
       clearInterval(countdown);
       timerDisplay();
     }
   })
 );
 
-//Timer
+// Timer
 const timerDisplay = () => {
+  timeLeft.innerHTML = `${count}s`;
   countdown = setInterval(() => {
     count--;
     timeLeft.innerHTML = `${count}s`;
@@ -98,60 +89,51 @@ const timerDisplay = () => {
   }, 1000);
 };
 
-//Display quiz
+// Display quiz card
 const quizDisplay = (questionCount) => {
   let quizCards = document.querySelectorAll(".container-mid");
-  //Hide other cards
   quizCards.forEach((card) => {
     card.classList.add("hide");
   });
-  //display current question card
   quizCards[questionCount].classList.remove("hide");
 };
 
-//Quiz Creation
+// Quiz Creation
 function quizCreator() {
-  //randomly sort questions
   quizArray.sort(() => Math.random() - 0.5);
-  //generate quiz
+  
   for (let i of quizArray) {
-    //randomly sort options
     i.options.sort(() => Math.random() - 0.5);
-    //quiz card creation
+    
     let div = document.createElement("div");
     div.classList.add("container-mid", "hide");
-    //question number
-    countOfQuestion.innerHTML = 1 + " of " + quizArray.length + " Question";
-    //question
+    
     let question_DIV = document.createElement("p");
     question_DIV.classList.add("question");
     question_DIV.innerHTML = i.question;
     div.appendChild(question_DIV);
-    //options
+    
     div.innerHTML += `
-    <button class="option-div" onclick="checker(this)">${i.options[0]}</button>
-     <button class="option-div" onclick="checker(this)">${i.options[1]}</button>
+      <button class="option-div" onclick="checker(this)">${i.options[0]}</button>
+      <button class="option-div" onclick="checker(this)">${i.options[1]}</button>
       <button class="option-div" onclick="checker(this)">${i.options[2]}</button>
-       <button class="option-div" onclick="checker(this)">${i.options[3]}</button>
+      <button class="option-div" onclick="checker(this)">${i.options[3]}</button>
     `;
     quizContainer.appendChild(div);
   }
 }
 
-//Checker Function to check if option is correct or not
+// Checker Function
 function checker(userOption) {
   let userSolution = userOption.innerText;
-  let question =
-    document.getElementsByClassName("container-mid")[questionCount];
+  let question = document.getElementsByClassName("container-mid")[questionCount];
   let options = question.querySelectorAll(".option-div");
 
-  //if user clicked answer == correct option stored in object
   if (userSolution === quizArray[questionCount].correct) {
     userOption.classList.add("correct");
     scoreCount++;
   } else {
     userOption.classList.add("incorrect");
-    //For marking the correct option
     options.forEach((element) => {
       if (element.innerText == quizArray[questionCount].correct) {
         element.classList.add("correct");
@@ -159,35 +141,35 @@ function checker(userOption) {
     });
   }
 
-  //clear interval(stop timer)
   clearInterval(countdown);
-  //disable all options
   options.forEach((element) => {
     element.disabled = true;
   });
 }
 
-//initial setup
+// Initial setup
 function initial() {
   quizContainer.innerHTML = "";
   questionCount = 0;
   scoreCount = 0;
-  count = 11;
+  count = 10;
   clearInterval(countdown);
-  timerDisplay();
   quizCreator();
+  timerDisplay();
   quizDisplay(questionCount);
+  countOfQuestion.innerHTML = `1 of ${quizArray.length} Question`;
 }
 
-//when user click on start button
+// Start Button Click
 startButton.addEventListener("click", () => {
   startScreen.classList.add("hide");
   displayContainer.classList.remove("hide");
   initial();
 });
 
-//hide quiz and display start screen
+// Windows Load Setup
 window.onload = () => {
   startScreen.classList.remove("hide");
   displayContainer.classList.add("hide");
+  scoreContainer.classList.add("hide");
 };
