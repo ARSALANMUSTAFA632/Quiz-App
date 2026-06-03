@@ -3,35 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCQ Quiz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-    rel="stylesheet">
+    <title>AI & Tech MCQ Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Start Screen -->
     <div class="start-screen">
-    <button id="start-button">Start</button>
+        <h1>Welcome to Tech Quiz</h1>
+        <p>Test your knowledge about Artificial Intelligence</p>
+        <button id="start-button">Start Quiz</button>
     </div>
-    <div id="display-container">
-    <div class="header">
-    <div class="number-of-count">
-    <span class="number-of-question">1 of 5 questions</span>
+
+    <!-- Quiz Display Container -->
+    <div id="display-container" class="hide">
+        <div class="header">
+            <div class="number-of-count">
+                <span class="number-of-question">1 of 5 questions</span>
+            </div>
+            <div class="timer-div">
+                <span class="timer-left">10s</span>
+            </div>
+        </div>
+        <div id="container">
+            <!-- Questions and options will be dynamic injected here -->
+        </div>
+        <button id="next-button">Next</button>
     </div>
-    <div class="timer-div">
-     <img src="timer-icon.svg"/>
-     <span class="timer-left"10s></span>
-    </div>
-    </div>
-    <div id="container">
-        <!-- questions and options will be displayed here -->
-    </div>
-    <button id="next-button">Next</button>
-    </div>
+
+    <!-- Score Container -->
     <div class="score-container hide">
-     <div id="user-score">Demo Score</div>   
-    <button id="restart">Restart</button>
+        <h2>Quiz Completed!</h2>
+        <div id="user-score">Your score is 0 out of 5</div>   
+        <button id="restart">Restart Quiz</button>
     </div>
-    <!-- script -->
-     <script src="script.js"></script>
+
+    <!-- Script -->
+    <script src="script.js"></script>
 </body>
 </html>
