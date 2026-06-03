@@ -1,122 +1,161 @@
-*{
+
+
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Poppins", "sans-serif";
+    font-family: "Poppins", sans-serif;
 }
-body{
-    background-color: greenyellow;
+
+body {
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 .start-screen,
-.score-container{
-    position: absolute;
-    top: 0;
+.score-container {
+    background-color: #ffffff;
+    padding: 3em 2em;
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    max-width: 32em;
+    border-radius: 0.8em;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-button{
+.start-screen h1, 
+.score-container h2 {
+    color: #333;
+    margin-bottom: 0.5em;
+}
+
+.start-screen p {
+    color: #666;
+    margin-bottom: 1.5em;
+}
+
+button {
     border: none;
     outline: none;
     cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 #start-button,
 #restart {
-    font-size: 1.3em;
-    padding: 0.5em 1.8em;
-    border-radius: 0.2em;
-}
-#restart{
-    margin-top: 0.9em;
+    font-size: 1.2em;
+    padding: 0.6em 2em;
+    border-radius: 0.4em;
+    background-color: #9b59b6;
+    color: #ffffff;
 }
 
-#display-container{
+#start-button:hover,
+#restart:hover {
+    background-color: #8e44ad;
+}
+
+#display-container {
     background-color: #ffffff;
-    padding: 3.1em  1.8em;
-    width: 80%;
+    padding: 2.5em 2em;
+    width: 100%;
     max-width: 37.5em;
-    margin: 0 auto;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    border-radius: 0.6em;
+    border-radius: 0.8em;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.header{
+.header {
     margin-bottom: 1.8em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 0.6em;
-    border-bottom: 0.1em solid #c0bfd2;
+    padding-bottom: 0.8em;
+    border-bottom: 0.1em solid #eee;
 }
 
-.timer-div{
-    background-color: #e1f5fe ;
-    width: 7.5em;
-    border-radius: 1.8em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.7em  1.8em;
-}
-
-.question{
-    margin-bottom: 1.25em;
+.number-of-count {
+    color: #555;
     font-weight: 600;
 }
 
-.option-div{
-    font-size: 0.9em;
+.timer-div {
+    background-color: #e1f5fe;
+    color: #0288d1;
+    border-radius: 1.8em;
+    padding: 0.5em 1.2em;
+    font-weight: 600;
+}
+
+.question {
+    margin-bottom: 1.25em;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #222;
+}
+
+.option-div {
+    font-size: 0.95em;
     width: 100%;
     padding: 1em;
-    margin: 0.3em 0;
+    margin: 0.5em 0;
     text-align: left;
+    background-color: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 0.5em;
+    color: #333;
+}
+
+.option-div:hover:not(:disabled) {
+    background-color: #f0f0f0;
+    border-color: #b3b3b3;
 }
 
 .option-div:disabled {
-    color: #000000;
     cursor: not-allowed;
 }
-#next-button{
+
+#next-button {
     font-size: 1em;
     margin-top: 1.5em;
     background-color: #0a69ed;
     color: #ffffff;
-    padding: 0.7em 1.8em;
-    border-radius: 0.3em;
-    float: right;
+    padding: 0.7em 2em;
+    border-radius: 0.4em;
+    display: block;
+    margin-left: auto;
 }
 
-.hide{
-    display: none;
+#next-button:hover {
+    background-color: #0452bc;
 }
 
-.incorrect{
-    background-color:#ffdde0 ;
-    color: #d32f2f;
-    border-color: #d32f2f;
+.hide {
+    display: none !important;
 }
 
-.correct{
-    background-color:#e7f6d5 ;
-    color:#689f38 ;
-    border-color: #689f38;
+.incorrect {
+    background-color: #ffdde0 !important;
+    color: #d32f2f !important;
+    border-color: #d32f2f !important;
 }
 
-#user-score{
-    font-size: 1.5em;
-    color: #ffffff;
+.correct {
+    background-color: #e7f6d5 !important;
+    color: #689f38 !important;
+    border-color: #689f38 !important;
 }
 
-
+#user-score {
+    font-size: 1.3em;
+    color: #333;
+    margin: 1em 0;
+}
 
 
 
